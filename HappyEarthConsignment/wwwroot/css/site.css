@@ -69,3 +69,192 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+/*home page styles*/
+#welcome {
+    position: relative;
+    max-height: 800px;
+}
+
+#welcomeImage {
+    opacity: .75;
+    width: 100%;
+    display: block;
+    z-index: 5;
+    text-align: center;
+}
+
+#opaque {
+    opacity: .99;
+    z-index: -10;
+    position: relative;
+}
+
+#tagline {
+    text-transform: lowercase;
+    color: white;
+    position: absolute;
+    text-align: center;
+    left: 50%;
+    top: 3%;
+    margin-left: -300px;
+    margin-top: -250px;
+    font-size: 5vh;
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+}
+
+#browse {
+    position: relative;
+    margin-top: 20px;
+    width: 100%;
+    height: 100px;
+    background-color: #2599d8;
+    text-align: center;
+    z-index: 11;
+}
+
+#browseButton {
+    font-family: "Oswald", sans-serif;
+    background-color: #feb213;
+    padding: 10px 20px;
+    width: 50%;
+    font-size: 25px;
+    border-radius: 10px;
+    margin-top: 18px;
+}
+
+    #browseButton a {
+        text-decoration: none;
+    }
+
+#launch {
+    width: 100%;
+    height: 100px;
+    background-color: #25d2d8;
+    text-align: center;
+    position: relative;
+    z-index: 11;
+}
+
+#create, #login, #learn {
+    background-color: white;
+    margin: 20px 20px 20px 20px;
+    width: 20%;
+    border-radius: 10px;
+    font-size: 20px;
+    height: 50%;
+}
+
+    #create a, #login a, #learn a {
+        text-decoration: none;
+        color: teal;
+    }
+
+/*header styles*/
+#headerBox {
+    display: flex;
+    justify-content: center;
+}
+
+.headerContainer {
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: row;
+    /*height: 40vh;*/
+}
+
+h1 {
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+}
+
+/* Logo Text Colors */
+/* pink color */
+#pink {
+    color: #d61c5b;
+    position: relative;
+    font-size: 100px;
+}
+
+/* red color*/
+#red {
+    color: #f1573f;
+    font-size: 100px;
+}
+
+/* yellow color */
+#yellow1, #yellow2 {
+    color: #feb213;
+    font-size: 100px;
+}
+
+/* green color */
+#green {
+    color: #6abc4e;
+    font-size: 100px;
+}
+
+/*blue color */
+#blue {
+    color: #2599d8;
+    font-size: 100px;
+}
+
+/* About Page Styles */
+#about {
+    text-align: center;
+}
+
+#mission {
+    margin-top: 20px;
+}
+
+#reasons {
+    border-color: #2599d8;
+    border-style: groove;
+    margin: 20px auto;
+    border-radius: 10px;
+    width: 75%;
+    line-height: .5cm;
+}
+
+.number {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.pink {
+    color: #d61c5b;
+}
+
+/* red color*/
+.red {
+    color: #f1573f;
+}
+
+/* yellow color */
+.yellow {
+    color: #feb213;
+}
+
+/* green color */
+.green {
+    color: #6abc4e;
+}
+
+/*blue color */
+.blue {
+    color: #2599d8;
+}
+
+#sources {
+    margin: 0px;
+    font-size: smaller
+}
+
+h3 {
+    text-decoration: underline;
+}

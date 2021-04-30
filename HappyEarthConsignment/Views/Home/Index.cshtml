@@ -1,8 +1,21 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<link href="~/css/site.css" rel="stylesheet" />
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<section>
+    <div id="welcome">
+        <img src="/images/fire.png" id="welcomeImage" alt="Friends enjoying time in nature">
+        <h2 id="tagline">Your affordable, sustainable fashion destination</h2>
+    </div>
+
+    <div id="browse">
+        <button id="browseButton"><a asp-area="" asp-controller="Shop" asp-action="Search">Browse Hundreds of Unique Items</a></button>
 </div>
+    <div id="launch">
+        <button id="create"><a asp-area="" asp-controller="Account" asp-action="SignUp">Create Account</a></button>
+        <button id="login"><a asp-area="" asp-controller="Account" asp-action="SignIn">Sign In</a></button>
+        <button id="learn"><a asp-area="" asp-controller="Home" asp-action="About">Learn More</a></button>
+    </div>
+
+</section>

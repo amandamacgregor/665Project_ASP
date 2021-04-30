@@ -1,0 +1,65 @@
+﻿
+@model IEnumerable<Product>
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+
+<h1 class="text-center">Search the Happy Earth Catalog</h1>
+
+<form asp-action="Search" method="get">
+    <div class="text-center">
+        <div>
+            Search by Gender: <select name="searchGender" class="input-group-sm" asp-items="ViewBag.GenderList"></select>
+            Condition: <select name="searchCondition" class="input-group-sm" asp-items="ViewBag.ConditionList"></select>
+            Size: <select name="searchSize" class="input-group-sm" asp-items="ViewBag.SizeList"></select>
+            Category: <select name="searchCategory" class="input-group-sm" asp-items="ViewBag.CategoryFilter"></select>
+        </div>
+        <div>
+            Priced Between:
+            Minimum Price: <input type="number" min="0" max="1000" name="priceMin" value="@ViewData["PriceMinFilter"]" />
+            Maximum Price: <input type="number" min="0" max="1000" name="priceMax" value="@ViewData["PriceMaxFilter"]" />
+        </div>
+        <div>
+            Added Between: <input type="date" name="startDate" value="@ViewData["StartDateFilter"]" />
+            <input type="date" name="endDate" value="@ViewData["EndDateFilter"]" />
+        </div>
+    </div>
+    <br />
+    <div class="form-actions text-center">
+        <input type="submit" value="Search" class="btn btn-primary" />
+        <a asp-action="Search" class="btn btn-link">Back to Full Product List</a>
+        </p>
+    </div>
+</form>
+
+@if (Model.Any())
+{
+    <div class="row">
+        @foreach (var p in Model)
+        {
+
+            <div class="col-sm-6">
+                <div class="card">
+                    <img class="card-img-top" src="@p.Photo" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">@p.Name</h5>
+                        <h5 class="card-subtitle">@p.Price.ToString("C2")</h5>
+                        <p class="card-text">@p.Description</p>
+                        <a class="btn btn-primary" asp-action="Details" asp-route-id="@p.ProductId">View Details</a>
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+}
+else
+{ //if no products were found display message and show link to view all products
+    <br />
+    <h2 class ="text-center">Sorry, no matching products found!</h2>
+}
+
+
+

@@ -9,9 +9,20 @@
 </head>
 <body>
     <header>
+        <div id="headerBox">
+            <div class="headerContainer">
+                <h1 id="pink">Ha</h1>
+                <h1 id="red">pp</h1>
+                <h1 id="yellow1">y</h1>
+                <img src="~/images/PastelGlobe.png" alt="Colorful Globe" height="150px" width="150px">
+                <h1 id="yellow2">E</h1>
+                <h1 id="green">ar</h1>
+                <h1 id="blue">th</h1>
+            </div>
+        </div>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">HappyEarthConsignment</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Happy Earth Consignment</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -19,10 +30,16 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Sign In/Sign Up</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Manage Account</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Shop" asp-action="Search">Search Inventory</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">View Cart</a>
                         </li>
                     </ul>
                 </div>
@@ -37,7 +54,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2021 - HappyEarthConsignment - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2021 - MacGregor/Schoenherr Incorporated - <a asp-area="" asp-controller="Home" asp-action="Privacy">Learn More About Our Mission</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

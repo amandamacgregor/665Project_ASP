@@ -57,5 +57,7 @@ namespace HappyEarthConsignment.Models
         public virtual ProductCategory Category { get; set; }
         [InverseProperty(nameof(OrderLineItem.Product))]
         public virtual ICollection<OrderLineItem> OrderLineItems { get; set; }
+
+
     }
 }
