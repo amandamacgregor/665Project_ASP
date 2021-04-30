@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using HappyEarthConsignment.Model;
+using HappyEarthConsignment.Models;
 
 namespace HappyEarthConsignment.Controllers
 {
@@ -140,6 +141,39 @@ namespace HappyEarthConsignment.Controllers
             sizeList.Add(new SelectListItem { Text = "3XL", Value = "3x" });
 
             return sizeList;
+        }
+
+        // prepare output to display items in cart object (demo7)
+        public IActionResult MyCart()
+        {
+            Cart aCart = GetCart();
+
+            //if (aCart.CartItems().Any())
+            //{
+                return View(aCart);
+            //}
+
+            //// if the cart is empty
+
+            //return RedirectToAction(nameof(Search));
+        }
+
+        //method to retrieve cart object from session state (demo7)
+        private Cart GetCart()
+        {
+            // call the session extension method GetObject
+            // if a cart object doesn't exist, create a new cart object
+
+            Cart aCart = HttpContext.Session.GetObject<Cart>("Cart") ?? new Cart();
+            return aCart;
+        }
+
+        //method to save cart object to session state (demo7)
+        private void SaveCart(Cart aCart)
+        {
+            // call the session extension method SetObject
+
+            HttpContext.Session.SetObject("Cart", aCart);
         }
     }
 }

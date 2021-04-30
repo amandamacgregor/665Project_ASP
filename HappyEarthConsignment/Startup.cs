@@ -32,7 +32,7 @@ namespace HappyEarthConsignment
             //services.AddDistributedMemoryCache();
             services.AddSession(options =>
             {
-                options.Cookie.Name = ".TaraStore.Session";
+                options.Cookie.Name = ".HappyEarth.Session";
                 options.IdleTimeout = TimeSpan.FromMinutes(20);
                 options.Cookie.IsEssential = true;
             });
@@ -68,6 +68,12 @@ namespace HappyEarthConsignment
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            // add this statement to use authentication
+            app.UseAuthentication();
+
+            // add this statement to allow the session system to automatically asscociate requests with sessions when they arrive from the client.
+            app.UseSession();
 
             app.UseRouting();
 

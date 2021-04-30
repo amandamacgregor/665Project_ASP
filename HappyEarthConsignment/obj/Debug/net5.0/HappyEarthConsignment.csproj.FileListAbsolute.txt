@@ -153,3 +153,4 @@ A:\public_html\HappyEarthASP\HappyEarthConsignment\obj\Debug\net5.0\HappyEarthCo
 A:\public_html\HappyEarthASP\HappyEarthConsignment\obj\Debug\net5.0\Razor\Views\Shop\Search.cshtml.g.cs
 X:\public_html\HappyEarthASP\HappyEarthConsignment\obj\Debug\net5.0\Razor\Views\Shop\Search.cshtml.g.cs
 X:\public_html\HappyEarthASP\HappyEarthConsignment\obj\Debug\net5.0\Razor\Views\Home\About.cshtml.g.cs
+X:\public_html\HappyEarthASP\HappyEarthConsignment\obj\Debug\net5.0\Razor\Views\Shop\MyCart.cshtml.g.cs
