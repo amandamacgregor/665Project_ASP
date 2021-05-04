@@ -6,30 +6,36 @@
 }
 
 
-<h1 class="text-center">Search the Happy Earth Catalog</h1>
+<h4 class="text-center">Search the Happy Earth Catalog</h4>
 
-<form asp-action="Search" method="get">
+<form id="search-form" asp-action="Search" method="get">
     <div class="text-center">
-        <div>
+        <div class="form-group">
             Search by Gender: <select name="searchGender" class="input-group-sm" asp-items="ViewBag.GenderList"></select>
+        </div>
+        <div class="form-group">
             Condition: <select name="searchCondition" class="input-group-sm" asp-items="ViewBag.ConditionList"></select>
+        </div>
+        <div class="form-group">
             Size: <select name="searchSize" class="input-group-sm" asp-items="ViewBag.SizeList"></select>
+        </div>
+        <div class="form-group">
             Category: <select name="searchCategory" class="input-group-sm" asp-items="ViewBag.CategoryFilter"></select>
         </div>
-        <div>
+        <div class="form-group">
             Priced Between:
             Minimum Price: <input type="number" min="0" max="1000" name="priceMin" value="@ViewData["PriceMinFilter"]" />
             Maximum Price: <input type="number" min="0" max="1000" name="priceMax" value="@ViewData["PriceMaxFilter"]" />
         </div>
-        <div>
+        <div class="form-group">
             Added Between: <input type="date" name="startDate" value="@ViewData["StartDateFilter"]" />
             <input type="date" name="endDate" value="@ViewData["EndDateFilter"]" />
         </div>
     </div>
     <br />
     <div class="form-actions text-center">
-        <input type="submit" value="Search" class="btn btn-primary" />
-        <a asp-action="Search" class="btn btn-link">Back to Full Product List</a>
+        <input type="submit" value="Search" class="btn btn-warning" id="search-button"/>
+        <a asp-action="Search" class="btn btn-secondary">Back to Full Product List</a>
         </p>
     </div>
 </form>

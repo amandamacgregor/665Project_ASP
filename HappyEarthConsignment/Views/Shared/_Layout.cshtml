@@ -29,11 +29,22 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
+                        @*If the user is not authenticated, show Login; else Logout*@
+
+                        @if (!Context.User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Sign In/Sign Up</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Sign Out</a>
+                            </li>
+                        }
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Sign In/Sign Up</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Manage Account</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Restrict" asp-action="ManageAccount">Manage Account</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Shop" asp-action="Search">Search Inventory</a>
@@ -54,7 +65,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2021 - MacGregor/Schoenherr Incorporated - <a asp-area="" asp-controller="Home" asp-action="Privacy">Learn More About Our Mission</a>
+            &copy; 2021 - MacGregor/Schoenherr Incorporated - <a asp-area="" asp-controller="Home" asp-action="About">Learn More About Our Mission</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

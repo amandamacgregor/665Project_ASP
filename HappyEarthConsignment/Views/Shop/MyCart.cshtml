@@ -34,37 +34,37 @@
         @foreach (var item in Model.CartItems())
         {
 
-        <tr>
-            <td>
-                <img src="@item.Product.Photo" height="50" width="50" alt="@item.Product.Name" />
-            </td>
-            <td>
-                <a asp-action="Details" asp-controller="Shop" asp-route-id="@item.Product.ProductId">@item.Product.Name</a>
-            </td>
-            <td class="text-right">
-                @item.Product.Price.ToString("c")
-            </td>
+            <tr>
+                <td>
+                    <img src="@item.Product.Photo" height="50" width="50" alt="@item.Product.Name" />
+                </td>
+                <td>
+                    <a asp-action="Details" asp-controller="Shop" asp-route-id="@item.Product.ProductId">@item.Product.Name</a>
+                </td>
+                <td class="text-right">
+                    @item.Product.Price.ToString("c")
+                </td>
 
-            <td class="text-right">
-                <form asp-action="UpdateCart" asp-controller="Shop" method="post">
-                    <input type="hidden" value="@item.Product.ProductId" name="productPK" />
-                    <input type="number" value="@item.Quantity" name="qty" size="2" required min="1" max="1" />
-                    <input type="submit" class="btn btn-sm btn-warning" value="Update Quantity" />
-                </form>
-            </td>
+                <td class="text-right">
+                    <form asp-action="UpdateCart" asp-controller="Shop" method="post">
+                        <input type="hidden" value="@item.Product.ProductId" name="productId" />
+                        <input type="number" value="@item.Quantity" name="qty" size="2" required min="1" max="1" />
+                        @*<input type="submit" class="btn btn-sm btn-warning" value="Update Quantity" />*@
+                    </form>
+                </td>
 
-            <td class="text-right">
-                @((item.Quantity * item.Product.Price).ToString("c"))
-            </td>
+                <td class="text-right">
+                    @((item.Quantity * item.Product.Price).ToString("c"))
+                </td>
 
 
-            <td>
-                <form asp-action="RemoveFromCart" asp-controller="Shop" method="post">
-                    <input type="hidden" value="@item.Product.ProductId" name="productId" />
-                    <input type="submit" class="btn btn-sm btn-danger" value="Remove Product" />
-                </form>
-            </td>
-        </tr>
+                <td>
+                    <form asp-action="RemoveFromCart" asp-controller="Shop" method="post">
+                        <input type="hidden" value="@item.Product.ProductId" name="productId" />
+                        <input type="submit" class="btn btn-sm btn-warning" value="Remove Product" />
+                    </form>
+                </td>
+            </tr>
         }
     </tbody>
     <tfoot>
@@ -84,11 +84,11 @@
     @if (!Context.User.Identity.IsAuthenticated)
     {
 
-        <a class="btn btn-info" asp-action="CheckOut" asp-controller="Restrict">Check Out</a>
+        <a class="btn btn-info" asp-action="Login" asp-controller="Account">Check Out</a>
     }
     else
     {
-        <a class="btn btn-info" asp-action="PlaceOrder" asp-controller="Restrict">Place Order</a>
+        <a class="btn btn-info" asp-action="OrderConfirmation" asp-controller="Shop">Place Order</a>
     }
 </p>
 

@@ -120,7 +120,7 @@ namespace HappyEarthConsignment.Controllers
             return conditionList;
         }
 
-        //Prepare a SelectList for the Condition Options
+        //Prepare a SelectList for the Size Options
         private List<SelectListItem> SizeList()
         {
 
@@ -175,5 +175,55 @@ namespace HappyEarthConsignment.Controllers
 
             HttpContext.Session.SetObject("Cart", aCart);
         }
+
+        // add a product to shopping cart
+        public IActionResult AddToCart(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction(nameof(Search));
+            }
+
+            var product = _context.Products.FirstOrDefault(p => p.ProductId == id);
+
+            if (product == null)
+            {
+                return RedirectToAction(nameof(Search));
+            }
+
+            // call to method to retrieve cart object from session state
+
+            Cart aCart = GetCart();
+
+            aCart.AddItem(product);
+
+            // call to method to save cart object to session state
+
+            SaveCart(aCart);
+
+            return RedirectToAction(nameof(MyCart));
+        }
+
+        //details action method
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction(nameof(Search));
+            }
+
+            var product = await _context.Products
+                .Include(p => p.Category)
+                .FirstOrDefaultAsync(m => m.ProductId == id);
+
+            if (product == null)
+            {
+                return RedirectToAction(nameof(Search));
+            }
+
+            return View(product);
+        }
     }
+
+
 }

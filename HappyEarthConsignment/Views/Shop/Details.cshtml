@@ -1,0 +1,98 @@
+﻿@*Demo 7 - Shopping Cart; LV*@
+
+@model HappyEarthConsignment.Models.Product
+
+
+@{
+    ViewData["Title"] = "ProductDetails";
+}
+<div class="text-center">
+    @*<h6>Details for @Model.Name</h6>*@
+
+    <div class="card border-info mb-3" style="max-width: 40rem; margin:0 auto">
+        <div class="card-header" style="font-weight: bold">@Html.DisplayFor(model => model.Name)</div>
+            <div class="card-body text-dark">
+                @*<h6 class="card-title">Image</h6>*@
+                <img src="@Model.Photo" height="100" width="100" alt="@Model.Name" />
+                <h6 class="card-title" style="margin-top: 5px">Price</h6>
+                <p class="card-text">@Model.Price.ToString("c")</p>
+                <h6 class="card-title">Size</h6>
+                <p class="card-text">@Html.DisplayFor(model => model.Size)</p>
+                <h6 class="card-title">Gender Category</h6>
+                <p class="card-text">@Html.DisplayFor(model => model.Gender)</p>
+                <h6 class="card-title">Brand</h6>
+                <p class="card-text">@Html.DisplayFor(model => model.Brand)</p>
+                <h6 class="card-title">@Html.DisplayNameFor(model => model.Description)</h6>
+                <p class="card-text">@Html.DisplayFor(model => model.Description)</p>
+                <h6 class="card-title">Date Listed</h6>
+                <p class="card-text">@Model.Created.ToString("d")</p>
+                <h6 class="card-title">Category</h6>
+                <p class="card-text">@Html.DisplayFor(model => model.Category.Name)</p>
+            </div>
+
+
+        @*<div>
+                <hr />
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        Product
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Name)
+                    </dd>
+                    <dt class="col-sm-2">
+                        Image
+                    </dt>
+                    <dd class="col-sm-10">
+                        <img src="@Model.Photo" height="100" width="100" alt="@Model.Name" />
+                    </dd>
+                    <dt class="col-sm-2">
+                        Price
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Model.Price.ToString("c")
+                    </dd>
+                    <dt class="col-sm-2">
+                        Size
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Size)
+                    </dd>
+                    <dt class="col-sm-2">
+                        Gender Category
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Gender)
+                    </dd>
+                    <dt class="col-sm-2">
+                        Brand
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Brand)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Description)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Description)
+                    </dd>
+                    <dt class="col-sm-2">
+                        Date Listed
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Model.Created.ToString("d")
+                    </dd>
+                    <dt class="col-sm-2">
+                        Category
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Category.Name)
+                </dl>
+            </div>*@
+        <div id="detail-btns" style="padding: 10px">
+            <a asp-action="AddToCart" asp-route-id="@Model.ProductId" class="btn btn-success btn-sm" >Add to Cart</a>
+            <a asp-action="Search">Back to Search</a>
+        </div>
+    </div>
+</div>
+

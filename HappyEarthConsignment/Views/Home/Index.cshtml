@@ -3,6 +3,11 @@
 }
 <link href="~/css/site.css" rel="stylesheet" />
 
+@if (TempData["success"] != null) //if user has just deleted an account and been redirected to index view, success message displays
+{
+    <div class="alert alert-success">@TempData["success"]</div>
+}
+
 <section>
     <div id="welcome">
         <img src="/images/fire.png" id="welcomeImage" alt="Friends enjoying time in nature">
@@ -11,10 +16,10 @@
 
     <div id="browse">
         <button id="browseButton"><a asp-area="" asp-controller="Shop" asp-action="Search">Browse Hundreds of Unique Items</a></button>
-</div>
+    </div>
     <div id="launch">
         <button id="create"><a asp-area="" asp-controller="Account" asp-action="SignUp">Create Account</a></button>
-        <button id="login"><a asp-area="" asp-controller="Account" asp-action="SignIn">Sign In</a></button>
+        <button id="login"><a asp-area="" asp-controller="Account" asp-action="LogIn">Sign In</a></button>
         <button id="learn"><a asp-area="" asp-controller="Home" asp-action="About">Learn More</a></button>
     </div>
 
