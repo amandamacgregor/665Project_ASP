@@ -1,4 +1,11 @@
-﻿using HappyEarthConsignment.Models;
+﻿/*HomeController with action methods for displaying site home page and about us page
+Authors: Amanda MacGregor & Tara Schoenherr
+References: Demo projects from LSV
+Prepared: Spring 2021
+Purpose: CIS 665 ASP Project
+ */
+
+using HappyEarthConsignment.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -18,15 +25,13 @@ namespace HappyEarthConsignment.Controllers
             _logger = logger;
         }
 
+        //displays home page
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+        //displays about us page
         public IActionResult About()
         {
             return View();

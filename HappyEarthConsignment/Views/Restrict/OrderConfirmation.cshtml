@@ -1,0 +1,20 @@
+﻿@*Happy Earth ASP - Order confirmation View; AM & TS*@
+
+@model int;
+@{
+    ViewData["Title"] = "Order Confirmation";
+}
+
+<div id="orderConfirmed">
+    <h2 style="text-align: center">Thank you for your order.</h2>
+    <h2 style="text-align: center">Your Order Confirmation Number is @Model</h2>
+    <h2 style="text-align: center">Read more about how <a asp-action="About" asp-controller="Home" style="color: darkblue">your order makes the world a better place</a></h2>
+</div>
+<div id="cancel order" style="text-align: center">
+    <p>Second thoughts? You can cancel your order using the button below </p>
+    <a class="btn btn-info" asp-controller="Restrict" asp-action="DeleteOrder" asp-route-id="@Model">Cancel Order</a>
+</div>
+<p style="text-align: center">
+    <a asp-action="Search" asp-controller="Shop">Continue Shopping</a>
+</p>
+

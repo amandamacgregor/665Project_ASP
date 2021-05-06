@@ -22,8 +22,10 @@ namespace HappyEarthConsignment.Models
         [Column("CustomerID")]
         public int CustomerId { get; set; }
         [Column(TypeName = "money")]
+        [Display(Name = "Order Total: ")]
         public decimal? Total { get; set; }
         [Column(TypeName = "datetime")]
+        [Display(Name = "Order Date/Time: ")]
         public DateTime PlacedAt { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime Updated { get; set; }

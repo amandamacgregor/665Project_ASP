@@ -69,6 +69,11 @@ namespace HappyEarthConsignment.Models
             return cartItems.Sum(s => s.Product.Price * s.Quantity);
         }
 
+        public int CountCartItems()
+        {
+            return cartItems.Count();
+        }
+
         public IEnumerable<CartItem> CartItems()
         {
             return cartItems;

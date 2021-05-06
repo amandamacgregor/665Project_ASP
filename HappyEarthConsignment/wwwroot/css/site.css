@@ -259,7 +259,7 @@ h3 {
     text-decoration: underline;
 }
 
-/*search*/
+/*search, delete order*/
 .card-img-top {
     width: 100%;
     height: 50vw;
@@ -287,4 +287,33 @@ h3 {
     background-color: #feb213;
 }
 
-/*product details*/
+/* Navbar links on mouse-over */
+/* Home - pink color */
+#nav1:hover {
+    color: #d61c5b !important;
+    font-weight: bold !important;
+}
+
+/* Sign-in - red color*/
+#nav2:hover {
+    color: #f1573f !important;
+    font-weight: bold !important;
+}
+
+/* Search yellow color */
+#nav3:hover {
+    color: #feb213 !important;
+    font-weight: bold !important;
+}
+
+/* Sell green color */
+#nav4:hover {
+    color: #6abc4e !important;
+    font-weight: bold !important;
+}
+
+/* View Cart bluecolor */
+#nav5:hover {
+    color: #2599d8 !important;
+    font-weight: bold !important;
+}

@@ -1,4 +1,5 @@
-﻿
+﻿@*Happy Earth ASP - Search View; AM & TS*@
+
 @model IEnumerable<Product>
 
 @{
@@ -34,9 +35,8 @@
     </div>
     <br />
     <div class="form-actions text-center">
-        <input type="submit" value="Search" class="btn btn-warning" id="search-button"/>
+        <input type="submit" value="Search" class="btn btn-warning" id="search-button" />
         <a asp-action="Search" class="btn btn-secondary">Back to Full Product List</a>
-        </p>
     </div>
 </form>
 
@@ -54,6 +54,7 @@
                         <h5 class="card-subtitle">@p.Price.ToString("C2")</h5>
                         <p class="card-text">@p.Description</p>
                         <a class="btn btn-primary" asp-action="Details" asp-route-id="@p.ProductId">View Details</a>
+                        <a class="btn btn-primary" asp-action="AddToCart" asp-route-id="@p.ProductId">Add to Cart</a>
                     </div>
                 </div>
             </div>
@@ -64,7 +65,7 @@
 else
 { //if no products were found display message and show link to view all products
     <br />
-    <h2 class ="text-center">Sorry, no matching products found!</h2>
+    <h2 class="text-center">Sorry, no matching products found!</h2>
 }
 
 

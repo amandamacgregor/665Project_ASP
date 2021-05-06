@@ -135,7 +135,6 @@ A:\public_html\HappyEarthASP\HappyEarthConsignment\obj\Debug\net5.0\scopedcss\bu
 A:\public_html\HappyEarthASP\HappyEarthConsignment\obj\Debug\net5.0\HappyEarthConsignment.TagHelpers.input.cache
 A:\public_html\HappyEarthASP\HappyEarthConsignment\obj\Debug\net5.0\HappyEarthConsignment.TagHelpers.output.cache
 A:\public_html\HappyEarthASP\HappyEarthConsignment\obj\Debug\net5.0\HappyEarthConsignment.RazorCoreGenerate.cache
-A:\public_html\HappyEarthASP\HappyEarthConsignment\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.cs
 A:\public_html\HappyEarthASP\HappyEarthConsignment\obj\Debug\net5.0\Razor\Views\Shared\Error.cshtml.g.cs
 A:\public_html\HappyEarthASP\HappyEarthConsignment\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
 A:\public_html\HappyEarthASP\HappyEarthConsignment\obj\Debug\net5.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
@@ -356,3 +355,7 @@ X:\public_html\HappyEarthASP\HappyEarthConsignment\obj\Debug\net5.0\Razor\Views\
 X:\public_html\HappyEarthASP\HappyEarthConsignment\obj\Debug\net5.0\Razor\Views\Restrict\ManageAccount.cshtml.g.cs
 X:\public_html\HappyEarthASP\HappyEarthConsignment\obj\Debug\net5.0\Razor\Views\Shop\Details.cshtml.g.cs
 A:\public_html\HappyEarthASP\HappyEarthConsignment\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
+A:\public_html\HappyEarthASP\HappyEarthConsignment\obj\Debug\net5.0\Razor\Views\Restrict\ConfirmOrder.cshtml.g.cs
+A:\public_html\HappyEarthASP\HappyEarthConsignment\obj\Debug\net5.0\Razor\Views\Restrict\OrderConfirmation.cshtml.g.cs
+A:\public_html\HappyEarthASP\HappyEarthConsignment\obj\Debug\net5.0\Razor\Views\Restrict\DeleteOrder.cshtml.g.cs
+A:\public_html\HappyEarthASP\HappyEarthConsignment\obj\Debug\net5.0\Razor\Views\Restrict\DeleteOrderConfirmation.cshtml.g.cs

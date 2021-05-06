@@ -1,9 +1,14 @@
-﻿@*Using model from Demo 7*@
+﻿@*Happy Earth ASP - My cart View; AM & TS*@
 
 @model Cart
 
 @{
     ViewData["Title"] = "My Cart";
+}
+
+@if (TempData["Failure"] != null)
+{ //alerts user if there has been an issue adding item to the cart
+    <div class="alert-danger">TempData["Failure"]</div>
 }
 
 <p>
@@ -21,13 +26,15 @@
             <th>
                 Price
             </th>
-            <th>
-                Quantity
-            </th>
+            @* Functionality to allow user to edit item quantity is not needed (only 1 of each item available)
+                Saving code b/c it could be useful if we added that functionality in the future*@
+            @*<th>
+                    Quantity
+                </th>*@
 
-            <th>
+            @*<th>
 
-            </th>
+                </th>*@
         </tr>
     </thead>
     <tbody>
@@ -44,18 +51,18 @@
                 <td class="text-right">
                     @item.Product.Price.ToString("c")
                 </td>
-
-                <td class="text-right">
-                    <form asp-action="UpdateCart" asp-controller="Shop" method="post">
-                        <input type="hidden" value="@item.Product.ProductId" name="productId" />
-                        <input type="number" value="@item.Quantity" name="qty" size="2" required min="1" max="1" />
-                        @*<input type="submit" class="btn btn-sm btn-warning" value="Update Quantity" />*@
-                    </form>
-                </td>
-
-                <td class="text-right">
-                    @((item.Quantity * item.Product.Price).ToString("c"))
-                </td>
+                @* Functionality to allow user to edit item quantity is not needed (only 1 of each item available)
+                    Saving code b/c it could be useful if we added that functionality in the future*@
+                <!--<td class="text-right">
+                <form asp-action="UpdateCart" asp-controller="Shop" method="post">
+                    <input type="hidden" value="@item.Product.ProductId" name="productId" />-->
+                @*<input type="number" value="@item.Quantity" name="qty" size="2" required min="1" max="1" />*@
+                @*<input type="submit" class="btn btn-sm btn-warning" value="Update Quantity" />*@
+                <!--</form>
+                </td>-->
+                @*<td class="text-right">
+                        @((item.Quantity * item.Product.Price).ToString("c"))
+                    </td>*@
 
 
                 <td>
@@ -69,7 +76,7 @@
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="4" class="text-right">
+            <td colspan="3" class="text-right">
                 Order Total:
             </td>
             <td>
@@ -80,15 +87,13 @@
 </table>
 <p>
 
-
-    @if (!Context.User.Identity.IsAuthenticated)
-    {
-
-        <a class="btn btn-info" asp-action="Login" asp-controller="Account">Check Out</a>
+    @if (@Model.CountCartItems() == 0)
+    {  //check that there are items in the cart
+        <a class="btn btn-danger" asp-action="Search" asp-controller="Shop">Add Items to Your Cart in Order to Place An Order</a>
     }
     else
     {
-        <a class="btn btn-info" asp-action="OrderConfirmation" asp-controller="Shop">Place Order</a>
+        <a class="btn btn-info" asp-action="ConfirmOrder" asp-controller="Restrict">Order Now</a>
     }
 </p>
 

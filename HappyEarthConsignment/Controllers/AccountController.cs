@@ -1,4 +1,9 @@
-﻿
+﻿/*Account Controller with methods for user to create account, sign in, and sign out
+Authors: Amanda MacGregor & Tara Schoenherr
+References: Demo projects from LSV
+Prepared: Spring 2021
+Purpose: CIS 665 ASP Project
+ */
 
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -26,8 +31,7 @@ namespace HappyEarthConsignment.Controllers
             _context = context;
         }
 
-        // the returnURL captures the View the user was trying to reach before being redirected to the Login View
-
+        //allows user to log into account, if user was redirected from a restricted action method, their destination is captured in returnURL and the action method will redirect them back upon successful authentication
         public IActionResult Login(string returnURL)
         {
             // if returnURL is null or empty, it is set to "~/" (i.e., Home/Index)
@@ -105,13 +109,13 @@ namespace HappyEarthConsignment.Controllers
             return View(loginInput);
         }
 
-        // GET: Sign Up for an account
+        // GET: Signs User Up for an account
         public IActionResult SignUp()
         {
             return View();
         }
 
-        // Post action (when user submits the new account form)
+        // Post action (when user submits the new account sign up form)
 
         [HttpPost]
         [ValidateAntiForgeryToken]

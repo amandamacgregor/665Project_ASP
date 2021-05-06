@@ -1,0 +1,44 @@
+﻿@*Happy Earth ASP - About View; AM & TS*@
+@{
+
+    <h2>Please confirm your order of @Model.CountCartItems() item(s).</h2>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Product
+                </th>
+                <th>
+                    Price
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.CartItems())
+            {
+                <tr>
+                    <td>
+                        <a asp-action="Details" asp-controller="Shop" asp-route-id="@item.Product.ProductId">@item.Product.Name</a>
+                    </td>
+                    <td class="text-right">
+                        @item.Product.Price.ToString("c")
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4" class="text-right">
+                    Order Total:
+                </td>
+                <td>
+                    @Model.ComputeOrderTotal().ToString("c")
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    <p> <a class="btn btn-info" asp-controller="Restrict" asp-action="PlaceOrder">Order Now!</a></p>
+    <p><a asp-action="MyCart" asp-controller="Shop">[Edit Cart]</a><a asp-action="Search" asp-controller="Shop">[Find More Great Items]</a></p>
+
+}

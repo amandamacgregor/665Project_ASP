@@ -22,35 +22,38 @@
         </div>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Happy Earth Consignment</a>
+                @*<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Happy Earth Consignment</a>*@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                <div class="collapse navbar-collapse"></div>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         @*If the user is not authenticated, show Login; else Logout*@
-
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" id="nav1" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
                         @if (!Context.User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Sign In/Sign Up</a>
+                                <a class="nav-link text-dark" id="nav2" asp-area="" asp-controller="Account" asp-action="Login">Sign In/Sign Up</a>
                             </li>
                         }
                         else
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Sign Out</a>
+                                <a class="nav-link text-dark" id="nav2" asp-area="" asp-controller="Account" asp-action="Logout">Sign Out</a>
                             </li>
                         }
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Restrict" asp-action="ManageAccount">Manage Account</a>
+                            <a class="nav-link text-dark" id="nav3" asp-area="" asp-controller="Restrict" asp-action="ManageAccount">Manage Account</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Shop" asp-action="Search">Search Inventory</a>
+                            <a class="nav-link text-dark" id="nav4"asp-area="" asp-controller="Shop" asp-action="Search">Search Inventory</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Shop" asp-action="MyCart">View Cart</a>
+                            <a class="nav-link text-dark" id="nav5" asp-area="" asp-controller="Shop" asp-action="MyCart">View Cart</a>
                         </li>
                     </ul>
                 </div>

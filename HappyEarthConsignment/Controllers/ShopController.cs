@@ -1,16 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿/*ShopController with methods to search products and manage shopping cart
+Authors: Amanda MacGregor & Tara Schoenherr
+References: Demo projects from LSV
+Prepared: Spring 2021
+Purpose: CIS 665 ASP Project
+ */
+
+using HappyEarthConsignment.Model;
+using HappyEarthConsignment.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
-//Add the following namespaces
-
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Http;
-using HappyEarthConsignment.Model;
-using HappyEarthConsignment.Models;
 
 namespace HappyEarthConsignment.Controllers
 {
@@ -23,11 +27,12 @@ namespace HappyEarthConsignment.Controllers
             _context = context;
         }
 
+        //Prepare a SelectList for the Gender Options
         public async Task<IActionResult> Search(string searchGender, string searchCondition, string searchSize, int searchCategory, decimal? priceMin, decimal? priceMax, DateTime? startDate, DateTime? endDate)
         {
-            List<SelectListItem> genderList = GenderList();
-            List<SelectListItem> conditionList = ConditionList();
-            List<SelectListItem> sizeList = SizeList();
+            List<SelectListItem> genderList = GenderList(searchGender);
+            List<SelectListItem> conditionList = ConditionList(searchCondition);
+            List<SelectListItem> sizeList = SizeList(searchSize);
             ViewData["GenderList"] = genderList;
             ViewData["ConditionList"] = conditionList;
             ViewData["SizeList"] = sizeList;
@@ -44,9 +49,13 @@ namespace HappyEarthConsignment.Controllers
             ViewData["StartDateFilter"] = startDate;
             ViewData["EndDateFilter"] = endDate;
 
+            //start by only including products marked available in the DB
             var products = from p in _context.Products select p;
+            products = products.Where(p => p.Available.Contains("Y"));
 
-            if (String.Equals(searchGender, "All")) {
+            //then filter by user inputs
+            if (String.Equals(searchGender, "All"))
+            {
                 products = products.Where(p => p.Gender.Contains("M") || p.Gender.Contains("F") || p.Gender.Contains("N"));
             }
 
@@ -86,71 +95,164 @@ namespace HappyEarthConsignment.Controllers
             return View(await products.Include(p => p.Category).OrderBy(p => p.Name).ToListAsync());
         }
 
+
         //Prepare a SelectList for the Gender Options
-        private List<SelectListItem> GenderList()
-        { 
+        private List<SelectListItem> GenderList(String searchGender)
+        {
             List<SelectListItem> genderList = new List<SelectListItem>();
 
-                genderList.Add(new SelectListItem { Text = "All Genders", Value = "All"});
+            //for each value check if user selected value has been passed through that matches - if so set as selected value
+            if ((!String.IsNullOrEmpty(searchGender)) && (String.Equals(searchGender, "All"))){
+                genderList.Add(new SelectListItem { Text = "All Genders", Value = "All", Selected = true });
+            }
+            else
+            {
+                genderList.Add(new SelectListItem { Text = "All Genders", Value = "All" });
+            }
 
+            if ((!String.IsNullOrEmpty(searchGender)) && (String.Equals(searchGender, "F")))
+            {
+                genderList.Add(new SelectListItem { Text = "Female", Value = "F", Selected = true });
+            }
+            else {
                 genderList.Add(new SelectListItem { Text = "Female", Value = "F" });
+            }
 
+            if ((!String.IsNullOrEmpty(searchGender)) && (String.Equals(searchGender, "N")))
+            {
+                genderList.Add(new SelectListItem { Text = "Gender Non-Binary", Value = "N", Selected = true });
+            }
+            else 
+            {
                 genderList.Add(new SelectListItem { Text = "Gender Non-Binary", Value = "N" });
+            }
 
+            if ((!String.IsNullOrEmpty(searchGender)) && (String.Equals(searchGender, "M")))
+            {
+                genderList.Add(new SelectListItem { Text = "Male", Value = "M", Selected = true });
+            }
+            else 
+            {
                 genderList.Add(new SelectListItem { Text = "Male", Value = "M" });
+            }
 
-                
-                return genderList;
+            return genderList;
         }
 
         //Prepare a SelectList for the Condition Options
-        private List<SelectListItem> ConditionList()
+        private List<SelectListItem> ConditionList(string searchCondition)
         {
 
             List<SelectListItem> conditionList = new List<SelectListItem>();
 
             conditionList.Add(new SelectListItem { Text = "Select a Condition", Value = null });
 
-            conditionList.Add(new SelectListItem { Text = "Used", Value = "Used" });
+            //for each value check if user selected value has been passed through that matches - if so set as selected value
+            if ((!String.IsNullOrEmpty(searchCondition)) && (String.Equals(searchCondition, "Used")))
+            {
+                conditionList.Add(new SelectListItem { Text = "Used", Value = "Used", Selected = true });
+            }
+            else 
+            {
+                conditionList.Add(new SelectListItem { Text = "Used", Value = "Used" });
+            }
 
-            conditionList.Add(new SelectListItem { Text = "Like New", Value = "Like New" });
+            if ((!String.IsNullOrEmpty(searchCondition)) && (String.Equals(searchCondition, "Like New")))
+            {
+                conditionList.Add(new SelectListItem { Text = "Like New", Value = "Like New", Selected = true });
+            }
+            else
+            {
+                conditionList.Add(new SelectListItem { Text = "Like New", Value = "Like New" });
+            }
 
-            conditionList.Add(new SelectListItem { Text = "New", Value = "New" });
+            if ((!String.IsNullOrEmpty(searchCondition)) && (String.Equals(searchCondition, "New")))
+            {
+                conditionList.Add(new SelectListItem { Text = "New", Value = "New", Selected = true });
+            }
+            else
+            {
+                conditionList.Add(new SelectListItem { Text = "New", Value = "New" });
+            }
 
             return conditionList;
         }
 
         //Prepare a SelectList for the Size Options
-        private List<SelectListItem> SizeList()
+        private List<SelectListItem> SizeList(string searchSize)
         {
 
             List<SelectListItem> sizeList = new List<SelectListItem>();
 
             sizeList.Add(new SelectListItem { Text = "Select a Size", Value = null });
 
-            sizeList.Add(new SelectListItem { Text = "Small", Value = "Small" });
+            //for each value check if user selected value has been passed through that matches - if so set as selected value
 
-            sizeList.Add(new SelectListItem { Text = "Medium", Value = "M" });
+            if ((!String.IsNullOrEmpty(searchSize)) && (String.Equals(searchSize, "Small")))
+            {
+                sizeList.Add(new SelectListItem { Text = "Small", Value = "Small", Selected = true });
+            }
+            else 
+            {
+                sizeList.Add(new SelectListItem { Text = "Small", Value = "Small" });
+            }
 
-            sizeList.Add(new SelectListItem { Text = "Large", Value = "Large" });
+            if ((!String.IsNullOrEmpty(searchSize)) && (String.Equals(searchSize, "M")))
+            {
+                sizeList.Add(new SelectListItem { Text = "Medium", Value = "M", Selected = true });
+            }
+            else
+            {
+                sizeList.Add(new SelectListItem { Text = "Medium", Value = "M" });
+            }
 
-            sizeList.Add(new SelectListItem { Text = "Extra-Large", Value = "1x" });
+            if ((!String.IsNullOrEmpty(searchSize)) && (String.Equals(searchSize, "Large")))
+            {
+                sizeList.Add(new SelectListItem { Text = "Large", Value = "Large", Selected = true });
+            }
+            else
+            {
+                sizeList.Add(new SelectListItem { Text = "Large", Value = "Large" });
+            }
 
-            sizeList.Add(new SelectListItem { Text = "2XL", Value = "2x" });
+            if ((!String.IsNullOrEmpty(searchSize)) && (String.Equals(searchSize, "1x")))
+            {
+                sizeList.Add(new SelectListItem { Text = "Extra-Large", Value = "1x", Selected = true });
+            }
+            else
+            {
+                sizeList.Add(new SelectListItem { Text = "Extra-Large", Value = "1x" });
+            }
 
-            sizeList.Add(new SelectListItem { Text = "3XL", Value = "3x" });
+            if ((!String.IsNullOrEmpty(searchSize)) && (String.Equals(searchSize, "1x")))
+            {
+                sizeList.Add(new SelectListItem { Text = "2XL", Value = "1x", Selected = true });
+            }
+            else
+            {
+                sizeList.Add(new SelectListItem { Text = "2XL", Value = "2x" });
+            }
+
+            if ((!String.IsNullOrEmpty(searchSize)) && (String.Equals(searchSize, "1x")))
+            {
+                sizeList.Add(new SelectListItem { Text = "2XL", Value = "1x", Selected = true });
+            }
+            else
+            {
+                sizeList.Add(new SelectListItem { Text = "3XL", Value = "3x" });
+            }
 
             return sizeList;
         }
 
-        // prepare output to display items in cart object (demo7)
+        // prepare output to display items in cart object 
         public IActionResult MyCart()
         {
             Cart aCart = GetCart();
 
             //if (aCart.CartItems().Any())
             //{
-                return View(aCart);
+            return View(aCart);
             //}
 
             //// if the cart is empty
@@ -158,7 +260,7 @@ namespace HappyEarthConsignment.Controllers
             //return RedirectToAction(nameof(Search));
         }
 
-        //method to retrieve cart object from session state (demo7)
+        //method to retrieve cart object from session state 
         private Cart GetCart()
         {
             // call the session extension method GetObject
@@ -168,7 +270,7 @@ namespace HappyEarthConsignment.Controllers
             return aCart;
         }
 
-        //method to save cart object to session state (demo7)
+        //method to save cart object to session state 
         private void SaveCart(Cart aCart)
         {
             // call the session extension method SetObject
@@ -204,7 +306,31 @@ namespace HappyEarthConsignment.Controllers
             return RedirectToAction(nameof(MyCart));
         }
 
-        //details action method
+        // remove product from shopping cart
+        public IActionResult RemoveFromCart(int? productId)
+        {
+            if (productId == null)
+            {
+                return RedirectToAction(nameof(Search));
+            }
+
+            var product = _context.Products.FirstOrDefault(p => p.ProductId == productId);
+
+            if (product == null)
+            {
+                return RedirectToAction(nameof(Search));
+            }
+
+            Cart aCart = GetCart();
+
+            aCart.RemoveItem(product);
+
+            SaveCart(aCart);
+
+            return RedirectToAction(nameof(MyCart));
+        }
+
+        //details action method to show product details
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
